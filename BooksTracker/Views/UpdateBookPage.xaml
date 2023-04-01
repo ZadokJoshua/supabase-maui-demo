@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BooksTracker.Views.UpdateBookPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:BooksTracker.ViewModels"
+    Title="UpdateBookPage"
+    x:DataType="viewmodel:UpdateBookViewModel">
+    <VerticalStackLayout Margin="20">
+        <Entry Placeholder="Title" Text="{Binding Book.Title}" />
+        <Entry Placeholder="Author" Text="{Binding Book.Author}" />
+        <Entry Placeholder="Image URL" Text="{Binding Book.ImageUrl}" />
+        <HorizontalStackLayout>
+            <CheckBox IsChecked="{Binding Book.IsFinished}" />
+            <Label Text="Have you finished reading this book?" VerticalOptions="Center" />
+        </HorizontalStackLayout>
+        <Button
+            Background="#4A88DA"
+            Command="{Binding UpdateBookCommand}"
+            Text="Update Book"
+            TextColor="#eff5f3" />
+    </VerticalStackLayout>
+</ContentPage>

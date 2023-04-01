@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BooksTracker.Views.BooksListingPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:BooksTracker.Models"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewmodel="clr-namespace:BooksTracker.ViewModels"
+    x:DataType="viewmodel:BooksListingViewModel">
+
+    <ContentPage.Resources>
+        <toolkit:BoolToObjectConverter
+            x:Key="BoolToObjectConverter"
+            FalseObject="Not Completed ❌"
+            TrueObject="Completed ✔" />
+    </ContentPage.Resources>
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior Command="{Binding GetBooksCommand}" EventName="Appearing" />
+    </ContentPage.Behaviors>
+
+    <Grid
+        Margin="20"
+        RowDefinitions="Auto,*"
+        RowSpacing="10">
+        <Grid Grid.Row="0" ColumnDefinitions="*,*">
+            <Label
+                Grid.Column="0"
+                FontAttributes="Bold"
+                FontSize="Large"
+                Text="Books Tracker" />
+            <Button
+                Grid.Column="1"
+                Background="#3ece8e"
+                Command="{Binding AddBookCommand}"
+                HorizontalOptions="End"
+                Text="Add"
+                TextColor="#eff5f3" />
+        </Grid>
+
+        <CollectionView Grid.Row="1" ItemsSource="{Binding Books}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="4" Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:Book">
+                    <Border
+                        Padding="15"
+                        Stroke="Dimgray"
+                        StrokeThickness="2">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="10,10,10,10" />
+                        </Border.StrokeShape>
+                        <Grid RowDefinitions="Auto,*" RowSpacing="4">
+                            <Image
+                                Grid.Row="0"
+                                Aspect="AspectFill"
+                                HeightRequest="200"
+                                HorizontalOptions="Center"
+                                Source="{Binding ImageUrl}"
+                                VerticalOptions="Center" />
+
+                            <Grid Grid.Row="1" RowDefinitions="Auto,Auto,Auto">
+                                <Label
+                                    Grid.Row="0"
+                                    FontAttributes="Bold"
+                                    FontSize="Title"
+                                    Text="{Binding Title}" />
+                                <Label
+                                    Grid.Row="1"
+                                    Margin="0,2"
+                                    FontSize="Small"
+                                    Text="{Binding Author}" />
+                                <Grid
+                                    Grid.Row="2"
+                                    Margin="0,5"
+                                    ColumnDefinitions="Auto,Auto,*">
+                                    <Button
+                                        Grid.Column="0"
+                                        BackgroundColor="#4A88DA"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:BooksListingViewModel}}, Path=UpdateBookCommand}"
+                                        CommandParameter="{Binding .}"
+                                        FontAttributes="Bold"
+                                        Text="Update"
+                                        TextColor="#eff5f3" />
+                                    <Button
+                                        Grid.Column="1"
+                                        Margin="8,0"
+                                        BackgroundColor="#F44336"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:BooksListingViewModel}}, Path=DeleteBookCommand}"
+                                        CommandParameter="{Binding .}"
+                                        FontAttributes="Bold"
+                                        Text="Delete"
+                                        TextColor="#eff5f3" />
+                                    <Label
+                                        Grid.Column="2"
+                                        HorizontalOptions="End"
+                                        Text="{Binding IsFinished, Converter={StaticResource BoolToObjectConverter}}"
+                                        TextColor="#eff5f3"
+                                        VerticalOptions="Center" />
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
