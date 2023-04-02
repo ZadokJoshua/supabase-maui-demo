@@ -24,7 +24,8 @@ public class DataService : IDataService
 
     public async Task DeleteBook(int id)
     {
-        await _supabaseClient.From<Book>().Where(b => b.Id == id).Delete();
+        await _supabaseClient.From<Book>()
+            .Where(b => b.Id == id).Delete();
     }
 
     public async Task UpdateBook(Book book)

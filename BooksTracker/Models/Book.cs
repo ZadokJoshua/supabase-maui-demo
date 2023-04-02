@@ -12,11 +12,11 @@ public class Book : BaseModel
     [Column("title")]
     public string Title { get; set; }
 
-    [Column("image_url")]
-    public string ImageUrl { get; set; }
-
     [Column("author")]
     public string Author { get; set; }
+
+    [Column("image_url")]
+    public string ImageUrl { get; set; }
 
     [Column("created_at", ignoreOnInsert: true)]
     public DateTime CreatedAt { get; set; }
