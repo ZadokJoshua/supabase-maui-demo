@@ -4,7 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewmodel="clr-namespace:BooksTracker.ViewModels"
-    Title="UpdateBookPage"
+    Title="Update Book"
     x:DataType="viewmodel:UpdateBookViewModel">
     <VerticalStackLayout Margin="20">
         <Entry Placeholder="Title" Text="{Binding Book.Title}" />

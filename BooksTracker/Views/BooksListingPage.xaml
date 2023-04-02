@@ -26,7 +26,7 @@
             <Label
                 Grid.Column="0"
                 FontAttributes="Bold"
-                FontSize="Large"
+                FontSize="Title"
                 Text="Books Tracker" />
             <Button
                 Grid.Column="1"
@@ -46,6 +46,7 @@
                     <Border
                         Padding="15"
                         Stroke="Dimgray"
+                        Background="#601d2021"
                         StrokeThickness="2">
                         <Border.StrokeShape>
                             <RoundRectangle CornerRadius="10,10,10,10" />
@@ -63,7 +64,7 @@
                                 <Label
                                     Grid.Row="0"
                                     FontAttributes="Bold"
-                                    FontSize="Title"
+                                    FontSize="Medium"
                                     Text="{Binding Title}" />
                                 <Label
                                     Grid.Row="1"
@@ -79,7 +80,6 @@
                                         BackgroundColor="#4A88DA"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:BooksListingViewModel}}, Path=UpdateBookCommand}"
                                         CommandParameter="{Binding .}"
-                                        FontAttributes="Bold"
                                         Text="Update"
                                         TextColor="#eff5f3" />
                                     <Button
@@ -88,13 +88,13 @@
                                         BackgroundColor="#F44336"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:BooksListingViewModel}}, Path=DeleteBookCommand}"
                                         CommandParameter="{Binding .}"
-                                        FontAttributes="Bold"
                                         Text="Delete"
                                         TextColor="#eff5f3" />
                                     <Label
                                         Grid.Column="2"
                                         HorizontalOptions="End"
                                         Text="{Binding IsFinished, Converter={StaticResource BoolToObjectConverter}}"
+                                        LineBreakMode="TailTruncation"
                                         TextColor="#eff5f3"
                                         VerticalOptions="Center" />
                                 </Grid>
