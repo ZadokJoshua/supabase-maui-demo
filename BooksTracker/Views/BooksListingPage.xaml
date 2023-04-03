@@ -54,7 +54,7 @@
                         <Grid RowDefinitions="Auto,*" RowSpacing="4">
                             <Image
                                 Grid.Row="0"
-                                Aspect="AspectFill"
+                                Aspect="AspectFit"
                                 HeightRequest="200"
                                 HorizontalOptions="Center"
                                 Source="{Binding ImageUrl}"
