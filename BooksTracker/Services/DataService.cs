@@ -14,17 +14,8 @@ public class DataService : IDataService
 
     public async Task<IEnumerable<Book>> GetBooks()
     {
-        try
-        {
-            var response = await _supabaseClient.From<Book>().Get();
-            return response.Models.OrderByDescending(b => b.CreatedAt);
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-            return Enumerable.Empty<Book>();
-        }
-        
+        var response = await _supabaseClient.From<Book>().Get();
+        return response.Models.OrderByDescending(b => b.CreatedAt);
     }
     
     public async Task CreateBook(Book book)
