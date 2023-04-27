@@ -25,13 +25,8 @@ public static class MauiProgram
         // Configure Supabase
         var url = AppConfig.SUPABASE_URL;
         var key = AppConfig.SUPABASE_KEY;
-        var options = new SupabaseOptions
-        {
-            AutoRefreshToken = true,
-            AutoConnectRealtime = true,
-        };
 
-        builder.Services.AddSingleton(provider => new Supabase.Client(url, key, options));
+        builder.Services.AddSingleton(provider => new Supabase.Client(url, key));
 
         // Add ViewModels
         builder.Services.AddSingleton<BooksListingViewModel>();

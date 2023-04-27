@@ -11,10 +11,20 @@ public class DataService : IDataService
     {
         _supabaseClient = supabaseClient;
     }
+
     public async Task<IEnumerable<Book>> GetBooks()
     {
-        var response = await _supabaseClient.From<Book>().Get();
-        return response.Models.OrderByDescending(b => b.CreatedAt);
+        try
+        {
+            var response = await _supabaseClient.From<Book>().Get();
+            return response.Models.OrderByDescending(b => b.CreatedAt);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return Enumerable.Empty<Book>();
+        }
+        
     }
     
     public async Task CreateBook(Book book)
